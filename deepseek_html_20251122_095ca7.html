@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Anisa, Cintaku</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary: #ff6b8b;
+            --secondary: #ffa8c5;
+            --accent: #a78bfa;
+            --dark: #2d3748;
+            --light: #f8fafc;
+            --gradient: linear-gradient(135deg, #ff6b8b 0%, #a78bfa 100%);
+        }
+
+        body {
+            background: var(--light);
+            color: var(--dark);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            opacity: 0.7;
+            transform: rotate(45deg);
+            animation: float 15s infinite linear;
+        }
+
+        .heart:before, .heart:after {
+            content: '';
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .heart:before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart:after {
+            top: 0;
+            left: -10px;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(45deg) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100px) rotate(45deg) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .heart-icon {
+            font-size: 2rem;
+            color: white;
+            margin: 20px 0;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .photo-card {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            background: white;
+            position: relative;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .photo-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .photo-caption {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .photo-caption h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .message-section {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        .message-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--gradient);
+            border-radius: 5px 0 0 5px;
+        }
+
+        .message-section h2 {
+            color: var(--primary);
+            margin-bottom: 25px;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        .message {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: justify;
+            margin-bottom: 30px;
+        }
+
+        .message p {
+            margin-bottom: 15px;
+        }
+
+        .love-quotes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .quote {
+            background: var(--light);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .quote:hover {
+            transform: translateY(-5px);
+        }
+
+        .quote i {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .hidden-audio {
+            display: none;
+        }
+
+        .music-indicator {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--gradient);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--dark);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .floating-btn {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .photo-frame {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .photo-frame:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 70%, rgba(0,0,0,0.3) 100%);
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            .message-section {
+                padding: 25px;
+            }
+            
+            .music-indicator {
+                bottom: 10px;
+                right: 10px;
+                font-size: 0.8rem;
+            }
+            
+            .floating-btn {
+                bottom: 70px;
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts" id="hearts-container"></div>
+    
+    <!-- Indikator musik yang sedang diputar -->
+    <div class="music-indicator" id="musicIndicator">
+        <i class="fas fa-music"></i>
+        <span>Lagu Romantis untuk Anisa</span>
+    </div>
+    
+    <div class="container">
+        <header>
+            <h1>Untuk Anisa, Cintaku</h1>
+            <div class="heart-icon">
+                <i class="fas fa-heart"></i>
+            </div>
+        </header>
+        
+        <div class="gallery">
+            <div class="photo-card">
+                <div class="photo-frame">
+                    <img src="https://i.ibb.co.com/CpzpLjjk/Whats-App-Image-2025-11-23-at-00-55-01-ae18aace.jpg" alt="Foto Anisa yang cantik">
+                </div>
+                <div class="photo-caption">
+                    <h3>Anisa Cantikku</h3>
+                    <p>Wanita yang membuat hariku selalu cerah</p>
+                </div>
+            </div>
+            
+            <div class="photo-card">
+                <div class="photo-frame">
+                    <img src="https://i.ibb.co.com/cKyz4w3F/Whats-App-Image-2025-11-23-at-00-55-02-3c931d53.jpg" alt="Foto kita berdua">
+                </div>
+                <div class="photo-caption">
+                    <h3>Kita Berdua</h3>
+                    <p>Bersama selamanya dalam cinta</p>
+                </div>
+            </div>
+            
+            <div class="photo-card">
+                <div class="photo-frame">
+                    <img src="https://i.ibb.co.com/ps47skT/Whats-App-Image-2025-11-23-at-00-55-03-9e1e4c3c.jpg" alt="Momen bahagia">
+                </div>
+                <div class="photo-caption">
+                    <h3>Momen Bahagia</h3>
+                    <p>Kenangan indah yang tak terlupakan</p>
+                </div>
+            </div>
+
+            <div class="photo-card">
+                <div class="photo-frame">
+                    <img src="https://i.ibb.co.com/pjc3RJ1r/Whats-App-Image-2025-11-23-at-00-55-04-8b0c9b1f.jpg" alt="Foto romantis">
+                </div>
+                <div class="photo-caption">
+                    <h3>Cinta Kita</h3>
+                    <p>Setiap detik bersamamu adalah anugerah</p>
+                </div>
+            </div>
+
+            <div class="photo-card">
+                <div class="photo-frame">
+                    <img src="https://i.ibb.co.com/bg6CMYNY/Whats-App-Image-2025-11-23-at-00-55-05-6b8c8a6e.jpg" alt="Foto spesial">
+                </div>
+                <div class="photo-caption">
+                    <h3>Kebahagiaan</h3>
+                    <p>Kamu adalah sumber kebahagiaanku</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="message-section">
+            <h2>Surat Cinta untuk Anisa</h2>
+            <div class="message">
+                <p>Anisa sayang,</p>
+                <p>Setiap kali aku memikirkanmu, hatiku dipenuhi dengan rasa syukur yang tak terhingga. Kamu adalah anugerah terindah dalam hidupku, cahaya yang menerangi kegelapanku, dan alasan mengapa aku tersenyum setiap hari.</p>
+                <p>Bersamamu, aku belajar arti cinta sejati. Cinta yang tidak hanya tentang perasaan bahagia, tetapi juga tentang saling mendukung, memahami, dan tumbuh bersama. Kamu membuatku menjadi pribadi yang lebih baik, dan untuk itu aku selalu berterima kasih.</p>
+                <p>Aku berjanji akan selalu ada untukmu, dalam suka maupun duka. Akan kujadikan setiap hari bersamamu berarti, dan akan kuperjuangkan kebahagiaanmu dengan segenap hatiku.</p>
+                <p>Aku mencintaimu lebih dari kata-kata bisa ungkapkan.</p>
+                <p>Dengan cinta yang abadi,<br>Dari seseorang yang sangat mencintaimu</p>
+            </div>
+            
+            <div class="love-quotes">
+                <div class="quote">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"Cintaku padamu takkan pernah pudar, seperti bintang yang selalu bersinar di malam hari."</p>
+                </div>
+                <div class="quote">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"Di mataku, kamu adalah wanita paling cantik di dunia, baik luar maupun dalam."</p>
+                </div>
+                <div class="quote">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"Bersamamu, rumah bukanlah tempat, melainkan perasaan."</p>
+                </div>
+                <div class="quote">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"Aku tak hanya jatuh cinta padamu, aku menemukan rumah di pelukanmu."</p>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Dibuat dengan <i class="fas fa-heart" style="color: var(--primary);"></i> untuk Anisa | © 2023</p>
+        </footer>
+    </div>
+
+    <div class="floating-btn" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Audio untuk lagu romantis yang tersembunyi -->
+    <div class="hidden-audio">
+        <iframe 
+            id="youtubeAudio" 
+            width="0" 
+            height="0" 
+            src="https://www.youtube.com/embed/nwdS93B8KQE?rel=0&autoplay=1&loop=1&playlist=nwdS93B8KQE&controls=0&modestbranding=1" 
+            frameborder="0" 
+            allow="autoplay; encrypted-media" 
+            allowfullscreen>
+        </iframe>
+    </div>
+
+    <script>
+        // Membuat hati yang mengambang
+        const heartsContainer = document.getElementById('hearts-container');
+        
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            
+            // Posisi acak
+            const left = Math.random() * 100;
+            const size = Math.random() * 20 + 10;
+            const duration = Math.random() * 15 + 10;
+            const delay = Math.random() * 5;
+            
+            heart.style.left = `${left}vw`;
+            heart.style.width = `${size}px`;
+            heart.style.height = `${size}px`;
+            heart.style.animationDuration = `${duration}s`;
+            heart.style.animationDelay = `${delay}s`;
+            
+            // Warna acak
+            const colors = ['#ff6b8b', '#ffa8c5', '#a78bfa', '#ff9a9e', '#fad0c4'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            heart.style.background = color;
+            heart.style.setProperty('--primary', color);
+            
+            heartsContainer.appendChild(heart);
+            
+            // Hapus hati setelah animasi selesai
+            setTimeout(() => {
+                heart.remove();
+            }, (duration + delay) * 1000);
+        }
+        
+        // Buat hati setiap 500ms
+        setInterval(createHeart, 500);
+        
+        // Scroll to top button
+        const scrollTopBtn = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.style.display = 'flex';
+            } else {
+                scrollTopBtn.style.display = 'none';
+            }
+        });
+        
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Animasi tambahan untuk foto saat dihover
+        const photoCards = document.querySelectorAll('.photo-card');
+        photoCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Preload gambar untuk menghindari loading delay
+        const imageUrls = [
+            'https://i.ibb.co.com/CpzpLjjk/Whats-App-Image-2025-11-23-at-00-55-01-ae18aace.jpg',
+            'https://i.ibb.co.com/cKyz4w3F/Whats-App-Image-2025-11-23-at-00-55-02-3c931d53.jpg',
+            'https://i.ibb.co.com/ps47skT/Whats-App-Image-2025-11-23-at-00-55-03-9e1e4c3c.jpg',
+            'https://i.ibb.co.com/pjc3RJ1r/Whats-App-Image-2025-11-23-at-00-55-04-8b0c9b1f.jpg',
+            'https://i.ibb.co.com/bg6CMYNY/Whats-App-Image-2025-11-23-at-00-55-05-6b8c8a6e.jpg'
+        ];
+        
+        imageUrls.forEach(url => {
+            const img = new Image();
+            img.src = url;
+        });
+
+        // Fungsi untuk memutar musik otomatis
+        function playMusic() {
+            const iframe = document.getElementById('youtubeAudio');
+            // Musik sudah otomatis diputar melalui parameter autoplay=1 di src
+            console.log("Musik sedang diputar otomatis");
+        }
+
+        // Coba putar musik saat halaman dimuat
+        window.addEventListener('load', playMusic);
+
+        // Fallback: jika autoplay diblokir, beri instruksi
+        document.addEventListener('click', function() {
+            playMusic();
+        });
+    </script>
+</body>
+</html>
